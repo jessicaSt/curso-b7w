@@ -6,8 +6,12 @@
         <main>
             <div class="body-exercise">
                 <div class="left-side">
-                    <label>Add a new participant: </label>
-                    <input type="text" name="newParticipant" id="newParticipant" v-model="newItem" v-on:change="setList()">
+                    <div>
+                        <label>Add a new participant: </label>
+                        <input type="text" name="newParticipant" id="newParticipant" v-model="newItem" v-on:keypress.enter="setList()">
+                        <span v-if="showLegend" >Digitando...</span>
+                    </div>
+                    <button v-if="this.itemValid" v-on:click="setList" >Adicionar</button>
                 </div>
                 <div class="rigth-side">
                     <h3>Participants</h3>
@@ -28,15 +32,40 @@ export default {
     data() {
         return {
             items:[],
-            newItem: ''
+            newItem: '',
+            showLegend: false,
+            temporizador: null,
+            itemValid: false
         }
     },
     methods: {
         setList() {
-            this.items.push( this.newItem )
-            this.newItem = ''
+            if(this.itemValid) {
+                this.items.push( this.newItem )
+                this.newItem = ''
+                this.itemValid = false
+            }
+        },
+        readyTypping:function() {
+            this.showLegend = false 
+            if(this.newItem.length > 2) {
+                this.itemValid = true
+            }
         }
     },
+    watch: {
+        newItem: function() {
+            if(this.temporizador != null) {
+                clearTimeout(this.temporizador);
+            }
+
+            if(this.newItem != '') {
+                this.showLegend = true 
+                this.itemValid = false
+                this.temporizador = setInterval(this.readyTypping, 1000);
+            } 
+        }
+    }
     
 }
 </script>
@@ -60,8 +89,8 @@ main {
 
 .body-exercise {
     position: relative;
-    width: 100%;
-    height: auto;
+    width: 90vw;
+    height: 50vh;
     display: flex;
     flex-direction: row;
 }
@@ -70,7 +99,7 @@ main {
     position: relative;
     height: 100%;
     width: 70%;
-    background-color: steelblue;
+    background-color: rgb(206, 233, 255);
 }
 
 .rigth-side {
@@ -78,7 +107,7 @@ main {
     height: 100%;
     width: 30%;
     min-width: 3vw;
-    background-color: aquamarine;
+    background-color: rgb(187, 187, 187);
 }
     
 </style>
