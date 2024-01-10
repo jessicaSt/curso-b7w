@@ -1,56 +1,73 @@
 <template>
-    <div class="exercise-header">
-    </div>
-    <div class="body-semafaro">
-       <div>{{ data.colorNow }}</div>
+    <div class="body-exercise">
+        <div class="exercise-header">
+            <button @click="turnOn" :disabled="data.statusGreen == 'on'">Liberar</button>
+            <button @click="turnOff" :disabled="data.statusGreen == 'off'">Fechar</button>
+        </div>
+       <div class="traffic-light-body">
+        <Light :color="'red'" :status="data.statusRed" />
+        <Light :color="'yellow'" :status="data.statusYellow"/>
+        <Light :color="'green'" :status="data.statusGreen"/>
+       </div>
         
     </div>
 </template>
+
 <script>
 import { onMounted, reactive, watch } from 'vue'
+import Light from './exer45/light.vue'
+
 export default {
+    components: { Light },
     setup(props) {
         const data = reactive({
-            colors: [{name: 'red', code: "#ff0000"}, {name: 'yellow', code: "#fdd456"}, {name: 'green', code: "#3abf00"} ],
-            colorNow: 'red',
+            colors: ['red', 'yellow', 'green'],
+            statusRed: 'on',
+            statusYellow: 'off',
+            statusGreen: 'off',
             temporizador: null
-        })
-
-        watch(
-            () => data.colorNow, 
-            (count) => {
-                if(data.temporizador != null) {
-                    data.colors.forEach((element, index) => {
-                        if (data.colorNow === element.name){
-                            data.colorNow = index != 2 ? colors[index++] : colors[0]
-                        }
-                        
-                    });
-                    clearTimeout(this.temporizador);
-                }
-        
-                if(data.colorNow != '') {
-                    data.temporizador = setInterval(1000);
-                }
-        }),
-
+        });
+        function turnOn() {
+            data.statusGreen = 'on'
+            data.statusYellow = 'off'
+            data.statusRed = 'off'
+        }
+        function turnOff() {
+            data.statusGreen = 'off'
+            data.statusYellow = 'on'
+            setTimeout(function() {
+                data.statusYellow = 'off'
+                data.statusRed = 'on'
+            }, 1500)
+            
+        }
         onMounted(() => {
-            data.colorNow = data.colors[0].name;
-        })
-
-        return { data }
-    }    
+            data.colorNow = data.colors[0];
+            console.log(data.colorNow)
+        });
+        return { data, turnOff, turnOn };
+    }
 }
 </script>
+
 <style lang="css">
-    .body-semafaro {
+    .body-exercise {
         width:95vw;
         height: 50vh;
         background-color: black;
         display: flex;
         justify-content: center;
+        padding: 50px;
+        display: flex;
+        flex-direction: column;
+        gap: 2em;
     }
-    .semafaro {
-        width: 500px;
+    .traffic-light-body {
+        background-color: #333;
+        padding: 20px 20px 0px 20px;
+        display: inline-block;
+        border-radius: 25px;
+        height: fit-content;
+        width: fit-content;
     }
 </style>
