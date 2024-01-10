@@ -1,5 +1,5 @@
 <template>
-    <div id="exercise43">
+    <div id="exercise43" class="body">
         <header class="exercise-header">
             <h2>exercicio 43</h2>
            <HeaderComponent @setList="setList"/>

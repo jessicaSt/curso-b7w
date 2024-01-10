@@ -1,16 +1,15 @@
 <template>
   <header>
-    <h1>Course B7Web Exercises</h1>
-    
+    <h1>Course B7Web Exercises</h1>    
   </header>
-
   <main>
     <nav class="menu">
-        <RouterLink to="/listaparticipantes">Lista Participantes</RouterLink>
-        <RouterLink to="/listafiltrada">Lista Filtrada</RouterLink>
-        <RouterLink to="/ex43">ex43</RouterLink>
-        <RouterLink to="/ex45">Semafaro</RouterLink>
-      </nav>
+      <RouterLink to="/">Home</RouterLink>
+      <RouterLink to="/listaparticipantes">Lista Participantes</RouterLink>
+      <RouterLink to="/listafiltrada">Lista Filtrada</RouterLink>
+      <RouterLink to="/ex43">ex43</RouterLink>
+      <RouterLink to="/ex45">Semafaro</RouterLink>
+    </nav>
   </main>
   <RouterView />
 </template>

@@ -4,19 +4,15 @@
             <h2>exercicio 2</h2>
         </header>
         <main>
-            <div class="body-exercise">
-                <div class="left-side">
-                    <div>
-                        <input type="text" name="busca" id="busca" placeholder="Persquisar nome" v-model="busca" v-on:keypress.enter="search()">
-                        <h3>Lista de Nomes</h3>
-                        <ul>
-                            <li v-for="nome in filtredList">
-                                {{ nome }}
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="rigth-side">
+            <div class="body">
+                <div>
+                    <input type="text" name="busca" id="busca" placeholder="Persquisar nome" v-model="busca" v-on:keypress.enter="search()">
+                    <h3>Lista de Nomes</h3>
+                    <ul>
+                        <li v-for="nome in filtredList">
+                            {{ nome }}
+                        </li>
+                    </ul>
                 </div>
             </div>
         </main>
@@ -27,7 +23,7 @@ export default {
     name:'Lista Filtrada',
     data() {
         return {
-            nomes:[ 'Jéssica', 'Ieda', 'Marino', 'Fernando', 'Ilse', 'So Ji-Sub', 'Shin Min-a'],
+            nomes:[ 'Jéssica', 'Ieda', 'Marino', 'Fernando', 'Ilse', 'Soon Jeon', 'Shin Min', 'David', 'Johannes'],
             busca: '',
         }
     },
@@ -65,29 +61,6 @@ main {
     margin-top: 2rem;
     width: 100%;
     position: relative;
-}
-
-.body-exercise {
-    position: relative;
-    width: 90vw;
-    height: 50vh;
-    display: flex;
-    flex-direction: row;
-}
-
-.left-side {
-    position: relative;
-    height: 100%;
-    width: 70%;
-    background-color: rgb(206, 233, 255);
-}
-
-.rigth-side {
-    position: relative;
-    height: 100%;
-    width: 30%;
-    min-width: 3vw;
-    background-color: rgb(187, 187, 187);
 }
     
 </style>

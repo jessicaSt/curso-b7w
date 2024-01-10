@@ -1,5 +1,5 @@
 <template>
-    <div class="body-exercise">
+    <div class="body">
         <div class="exercise-header">
             <button @click="turnOn" :disabled="data.statusGreen == 'on'">Liberar</button>
             <button @click="turnOff" :disabled="data.statusGreen == 'off'">Fechar</button>
@@ -51,18 +51,8 @@ export default {
 </script>
 
 <style lang="css">
-    .body-exercise {
-        width:95vw;
-        height: 50vh;
-        background-color: black;
-        display: flex;
-        justify-content: center;
-        padding: 50px;
-        display: flex;
-        flex-direction: column;
-        gap: 2em;
-    }
     .traffic-light-body {
+        margin-top: 1em;
         background-color: #333;
         padding: 20px 20px 0px 20px;
         display: inline-block;

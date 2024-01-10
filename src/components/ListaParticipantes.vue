@@ -1,7 +1,7 @@
 <template>
-    <div id="exercise1">
+    <div id="exercise1" class="body">
         <header class="exercise-header">
-            <h2>exercicio 1</h2>
+            <h2>Exercise 1</h2>
         </header>
         <main>
             <div class="body-exercise">
@@ -70,12 +70,6 @@ export default {
 }
 </script>
 <style lang="css">
-#exercise1 {
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 80vh;
-}
 .exercise-header {
     display: block;
     width: 100vw;
